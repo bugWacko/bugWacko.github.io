@@ -68,4 +68,6 @@ theme: hexo-theme-spfk
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: 
+  type: git
+  repository: ssh://git@github.com:bugWacko/bugwacko.github.io.git
+  branch: master
