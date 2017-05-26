@@ -4,7 +4,7 @@
 ## About Page: `hexo new page about`
 ## Tags Cloud Page: `hexo new page tags`
 menu:
-  博客首页: /Home
+  博客首页: ../
   作品展示: /works
   留言打卡: /about
   前端导航: /FrontEndGuide
@@ -25,7 +25,7 @@ favicon: img/favicon.png
 ## https://github.com/hexojs/hexo-generator-feed
 subnav:
   mail: "http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E"
-  github: "https://github.com/luuman"
+  github: "https://github.com/bugWacko"
   zhihu: "#"
   weibo: "#"
   google: "#"
@@ -103,7 +103,7 @@ toc_nowrap: false
 
 # 自定义"阅读全文"链接按钮的显示文字
 # Customize the text on excerpt link
-excerpt_link: 大航海 #修改more>>的文字
+excerpt_link: more>> #修改more>>的文字
 
 # 是否显示边栏中的搜索框（仅样式，未添加搜索功能）
 # Search Box in left column
