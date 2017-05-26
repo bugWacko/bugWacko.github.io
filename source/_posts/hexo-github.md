@@ -10,6 +10,8 @@ Hexo是一个快速，简单和强大的博客框架。您在[Markdown](https://
 # 安装
 只需要几分钟的时间来设置Hexo。如果您遇到问题，找不到解决方案，请[提交一个GitHub问题](https://github.com/hexojs/hexo/issues)，我会尽力解决。
 
++ <!-- more -->
+
 # 要求
 安装Hexo很容易。但是，您需要首先安装几个其他的东西：
 > * [Node.js](https://nodejs.org/en/)
