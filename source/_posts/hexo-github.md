@@ -5,15 +5,15 @@ tags: hexo、git、node.js
 ---
 
 # 什么是HEXO？
-Hexo是一个快速，简单和强大的博客框架。您在[Markdown](#https://daringfireball.net/projects/markdown/)（或其他语言）中撰写帖子，Hexo会在几秒钟内生成具有美丽主题的静态文件。
+Hexo是一个快速，简单和强大的博客框架。您在[Markdown](https://daringfireball.net/projects/markdown/)（或其他语言）中撰写帖子，Hexo会在几秒钟内生成具有美丽主题的静态文件。
 
 # 安装
-只需要几分钟的时间来设置Hexo。如果您遇到问题，找不到解决方案，请[提交一个GitHub问题](#https://github.com/hexojs/hexo/issues)，我会尽力解决。
+只需要几分钟的时间来设置Hexo。如果您遇到问题，找不到解决方案，请[提交一个GitHub问题](https://github.com/hexojs/hexo/issues)，我会尽力解决。
 
 # 要求
 安装Hexo很容易。但是，您需要首先安装几个其他的东西：
-> * [Node.js](#https://nodejs.org/en/)
-> * [Git](#https://git-scm.com/)
+> * [Node.js](https://nodejs.org/en/)
+> * [Git](https://git-scm.com/)
 
 如果您的电脑已经有这些，恭喜！只需安装Hexo与npm：
 
@@ -21,13 +21,13 @@ Hexo是一个快速，简单和强大的博客框架。您在[Markdown](#https:/
 $ npm install -g hexo-cli
 ```
 # 安装Git
-* Windows：下载并安装[git](#https://git-scm.com/)。
-* 苹果：与安装它[自制](#https://brew.sh/)，[MacPorts](#https://www.macports.org/)的或[安装程序](#https://sourceforge.net/projects/git-osx-installer/)。
+* Windows：下载并安装[git](https://git-scm.com/)。
+* 苹果：与安装它[自制](https://brew.sh/)，[MacPorts](https://www.macports.org/)的或[安装程序](https://sourceforge.net/projects/git-osx-installer/)。
 * Linux（Ubuntu，Debian）： sudo apt-get install git-core
 * Linux（Fedora，Red Hat，CentOS）： sudo yum install git-core
 
 # 安装Node.js
-安装Node.js的最好方法是使用[nvm](#https://github.com/creationix/nvm)。
+安装Node.js的最好方法是使用[nvm](https://github.com/creationix/nvm)。
 
 ```
 $ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | SH
@@ -44,7 +44,7 @@ $ wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh |
 $ nvm install stable
 
 ```
-或者，下载并运行[安装程序](#https://nodejs.org/en/)。
+或者，下载并运行[安装程序](https://nodejs.org/en/)。
 
 # 安装Hexo
 
@@ -195,9 +195,9 @@ _posts 目录下的md文件，会被编译成html文件，放到 public （此�
 |-- landscape  //默认主题
 |-- hexo-theme-next  //第三方主题
 ```
-你也可以自己下载主题放到该文件下,[hexo主题](#https://hexo.io/themes/)
+你也可以自己下载主题放到该文件下,[hexo主题](https://hexo.io/themes/)
 
-#### 如果大家想了解更多，可以到[Hexo官网](#https://hexo.io/)查看
+#### 如果大家想了解更多，可以到[Hexo官网](https://hexo.io/)查看
 
 #### Happy reading!
 
