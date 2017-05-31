@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>function与感叹号 | BugWacko&#39;s Blog</title>
+  <title>ios内存泄漏的那些事 | BugWacko&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果在function之前加上感叹号 (!) 会怎么样 ？">
-<meta name="keywords" content="js">
+  <meta name="description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
+<meta name="keywords" content="block、release">
 <meta property="og:type" content="article">
-<meta property="og:title" content="function与感叹号">
-<meta property="og:url" content="https://bugwacko.github.io/2017/05/26/function与感叹号/index.html">
+<meta property="og:title" content="ios内存泄漏的那些事">
+<meta property="og:url" content="https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/index.html">
 <meta property="og:site_name" content="BugWacko&#39;s Blog">
-<meta property="og:description" content="如果在function之前加上感叹号 (!) 会怎么样 ？">
-<meta property="og:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7-1.png">
-<meta property="og:updated_time" content="2017-05-28T06:24:32.000Z">
+<meta property="og:description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
+<meta property="og:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
+<meta property="og:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
+<meta property="og:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
+<meta property="og:updated_time" content="2017-05-31T06:11:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="function与感叹号">
-<meta name="twitter:description" content="如果在function之前加上感叹号 (!) 会怎么样 ？">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7-1.png">
+<meta name="twitter:title" content="ios内存泄漏的那些事">
+<meta name="twitter:description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
+<meta name="twitter:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
   
     <link rel="alternative" href="/atom.xml" title="BugWacko&#39;s Blog" type="application/atom+xml">
   
@@ -235,11 +237,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-function与感叹号" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ios内存泄漏的那些事" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/public/2017/05/26/function与感叹号/" class="article-date">
-      <time datetime="2017-05-26T08:33:48.000Z" itemprop="datePublished">2017-05-26</time>
+      <a href="/public/2017/05/31/ios内存泄漏的那些事/" class="article-date">
+      <time datetime="2017-05-31T02:14:23.000Z" itemprop="datePublished">2017-05-31</time>
 </a>
     </div>
   
@@ -252,7 +254,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      function与感叹号
+      ios内存泄漏的那些事
     </h1>
   
 
@@ -263,7 +265,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/js/">js</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/block、release/">block、release</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -273,44 +275,38 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h5 id="如果在function之前加上感叹号-会怎么样-？"><a href="#如果在function之前加上感叹号-会怎么样-？" class="headerlink" title="如果在function之前加上感叹号 (!) 会怎么样 ？"></a>如果在function之前加上感叹号 (!) 会怎么样 ？</h5><ul>
+        <p>从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：</p>
+<ul>
 <li><a id="more"></a>
 </li>
 </ul>
-<p>比如下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!function()&#123;alert(&apos;iifksp&apos;)&#125;()        // true</div></pre></td></tr></table></figure>
-<p>在控制台运行后得到的值时true，为什么是true这很容易理解，因为这个匿名函数没有返回值，默认返回的就是undefined，求反的结果很自然的就是true。所以问题并不在于结果值，而是在于，为什么求反操作能够让一个匿名函数的自调变的合法？</p>
-<p>平时我们可能对添加括号来调用匿名函数的方式更为习惯：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(function()&#123;alert(&apos;iifksp&apos;)&#125;)()        // true</div></pre></td></tr></table></figure>
-<p>或者：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(function()&#123;alert(&apos;iifksp&apos;)&#125;())        // true</div></pre></td></tr></table></figure>
-<p>虽然上述两者括号的位置不同，不过效果完全一样。</p>
-<p>那么，是什么好处使得为数不少的人对这种叹号的方式情有独钟？如果只是为了节约一个字符未免太没有必要了，这样算来即使一个100K的库恐怕也节省不了多少空间。既然不是空间，那么就是说也许还有时间上的考量，事实很难说清，文章的最后有提到性能。</p>
-<p>回到核心问题，为什么能这么做？甚至更为核心的问题是，为什么必须这么做？</p>
-<p>其实无论是括号，还是感叹号，让整个语句合法做的事情只有一件，就是让一个函数声明语句变成了一个表达式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function a()&#123;alert(&apos;iifksp&apos;)&#125;        // undefined</div></pre></td></tr></table></figure>
-<p>这是一个函数声明，如果在这么一个声明后直接加上括号调用，解析器自然不会理解而报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function a()&#123;alert(&apos;iifksp&apos;)&#125;()        // SyntaxError: unexpected_token</div></pre></td></tr></table></figure>
-<p>因为这样的代码混淆了函数声明和函数调用，以这种方式声明的函数 a，就应该以 a(); 的方式调用。</p>
-<p>但是括号则不同，它将一个函数声明转化成了一个表达式，解析器不再以函数声明的方式处理函数a，而是作为一个函数表达式处理，也因此只有在程序执行到函数a时它才能被访问。</p>
-<p>所以，任何消除函数声明和函数表达式间歧义的方法，都可以被解析器正确识别。比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var i = function()&#123;return 10&#125;();        // undefined  </div><div class="line">1 &amp;&amp; function()&#123;return true&#125;();        // true  </div><div class="line">1, function()&#123;alert(&apos;iifksp&apos;)&#125;();        // undefined</div></pre></td></tr></table></figure>
-<p>赋值，逻辑，甚至是逗号，各种操作符都可以告诉解析器，这个不是函数声明，它是个函数表达式。并且，对函数一元运算可以算的上是消除歧义最快的方式，感叹号只是其中之一，如果不在乎返回值，这些一元运算都是有效的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">!function()&#123;alert(&apos;iifksp&apos;)&#125;()        // true</div><div class="line">+function()&#123;alert(&apos;iifksp&apos;)&#125;()        // NaN</div><div class="line">-function()&#123;alert(&apos;iifksp&apos;)&#125;()        // NaN</div><div class="line">~function()&#123;alert(&apos;iifksp&apos;)&#125;()        // -1</div></pre></td></tr></table></figure>
-<p>甚至下面这些关键字，都能很好的工作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void function()&#123;alert(&apos;iifksp&apos;)&#125;()        // undefined  </div><div class="line">new function()&#123;alert(&apos;iifksp&apos;)&#125;()        // Object  </div><div class="line">delete function()&#123;alert(&apos;iifksp&apos;)&#125;()        // true</div></pre></td></tr></table></figure>
-<p>最后，括号做的事情也是一样的，消除歧义才是它真正的工作，而不是把函数作为一个整体，所以无论括号括在声明上还是把整个函数都括在里面，都是合法的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(function()&#123;alert(&apos;iifksp&apos;)&#125;)()        // undefined</div><div class="line">(function()&#123;alert(&apos;iifksp&apos;)&#125;())        // undefined</div></pre></td></tr></table></figure>
-<p>说了这么多，实则在说的一些都是最为基础的概念——语句，表达式，表达式语句，这些概念如同指针与指针变量一样容易产生混淆。虽然这种混淆对编程无表征影响，但却是一块绊脚石随时可能因为它而头破血流。</p>
-<p>最后讨论下性能。我在jsperf上简单建立了一个测试：<a href="http://jsperf.com/js-funcion-expression-speed" target="_blank" rel="external">http://jsperf.com/js-funcion-expression-speed</a> ，可以用不同浏览器访问，运行测试查看结果。我也同时将结果罗列如下表所示（由于我比较穷，测试配置有点丢人不过那也没办法：奔腾双核1.4G，2G内存，win7企业版）：</p>
-<p><img src="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7-1.png" alt="MacDown logo"></p>
-<p>可见不同的方式产生的结果并不相同，而且，差别很大，因浏览器而异。</p>
-<p>但我们还是可以从中找出很多共性：new方法永远最慢——这也是理所当然的。其它方面很多差距其实不大，但有一点可以肯定的是，感叹号并非最为理想的选择。反观传统的括号，在测试里表现始终很快，在大多数情况下比感叹号更快——所以平时我们常用的方式毫无问题，甚至可以说是最优的。加减号在chrome表现惊人，而且在其他浏览器下也普遍很快，相比感叹号效果更好。</p>
-<p>当然这只是个简单测试，不能说明问题。但有些结论是有意义的：括号和加减号最优。</p>
-<p>但是为什么这么多开发者钟情于感叹号？我觉得这只是一个习惯问题，它们之间的优劣完全可以忽略。一旦习惯了一种代码风格，那么这种约定会使得程序从混乱变得可读。如果习惯了感叹号，我不得不承认，它比括号有更好的可读性。我不用在阅读时留意括号的匹配，也不用在编写时粗心遗忘——</p>
-<p>当我也这么干然后嚷嚷着这居然又节省了一个字符而沾沾自喜的时候，却忘了自己仓皇翻出一本卷边的C语言教科书的窘迫和荒唐……任何人都有忘记的时候，当再捡起来的时候，捡起的就已经不单单是忘掉的东西了。</p>
-<p><code>转自</code> <code>葵中剑博客</code> 博客<a href="https://swordair.com/function-and-exclamation-mark/" target="_blank" rel="external">https://swordair.com/function-and-exclamation-mark/</a></p>
-<h3 id="happy-reading"><a href="#happy-reading" class="headerlink" title="happy reading"></a>happy reading</h3><hr>
+<h3 id="Block循环引用"><a href="#Block循环引用" class="headerlink" title="Block循环引用"></a>Block循环引用</h3><p>block作为一个老生常谈的问题，但是一直也是大家比较容易出错的地方，关键就在于代码间是否出现了闭环，其中最为常见的就属MJRefresh了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^&#123;</div><div class="line">        self.page = 1;</div><div class="line">        [self.dataArr removeAllObjects];</div><div class="line">        [self loadData];</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>我们来分析看看MJRefresh在什么情况下会出现造成循环引用问题：</p>
+<p>我们可以再headerWithRefreshingBlock看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 构造方法</div><div class="line">+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock</div><div class="line">&#123;</div><div class="line">    MJRefreshHeader *cmp = [[self alloc] init];</div><div class="line">    cmp.refreshingBlock = refreshingBlock;</div><div class="line">    return cmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里仅有三行代码，无非就是创建了下拉刷新部分View然后返回，这里比较重要的是<strong>cmp.refreshingBlock = refreshingBlock</strong>;这一句，这里的<strong>refreshingBlock</strong>是属于<strong>MJRefreshHeader</strong>的强引用属性，最后header会成为我们自己tableView的强引用属性mj_header，也就是说self.tableView强引用header, header强引用<strong>refreshingBlock</strong>，如果<strong>refreshingBlock</strong>里面强引用self，就成了循环引用，所以必须使用<strong>weakSelf</strong>，破掉这个循环。画图表示为：</p>
+<p><img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="mjrefresh"></p>
+<p>闭环过程：<br><strong>self –&gt; self.tableView –&gt; self.tableView.mj_header –&gt; self.tableView.mj_header.refreshingBlock –&gt; self</strong></p>
+<p>解决方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">__weak typeof(self) weakself = self; </div><div class="line">self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^&#123;</div><div class="line">        __strong typeof(self) strongself = weakself;</div><div class="line">        strongself.page = 1;</div><div class="line">        [strongself.dataArr removeAllObjects];</div><div class="line">        [strongself loadData];</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>strongself是为了防止内存提前释放，有兴趣的童鞋可深入了解，这里不做过多解释了。当然也可借助libextobjc库进行解决，书写为@weakify和@strongify会更方便些。</p>
+</blockquote>
+<h3 id="delegate循环引用"><a href="#delegate循环引用" class="headerlink" title="delegate循环引用"></a>delegate循环引用</h3><p>delegate 同样存在闭环问题，但是delegate的问题很常见也是比较好解决的，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//一般我们定义delegate都是会使用weak弱引用</div><div class="line">@property (nonatomic, weak) id delegate;</div></pre></td></tr></table></figure>
+<p>下图比较形象的说明了使用weak修饰就是为了防止ViewController和UITableView相互强引用内存无法释放的问题：</p>
+<p><img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="delegate"></p>
+<h3 id="NSTimer循环引用"><a href="#NSTimer循环引用" class="headerlink" title="NSTimer循环引用"></a>NSTimer循环引用</h3><p>对于定时器NSTimer，使用不正确也会造成内存泄漏问题。这里简单举个例子，我们声明了一个类TestNSTimer，在其init方法中创建定时器执行操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">@interface TestNSTimer ()</div><div class="line">@property (nonatomic, strong) NSTimer *timer;</div><div class="line">@end</div><div class="line">@implementation TestNSTimer</div><div class="line"> </div><div class="line">- (instancetype)init &#123;</div><div class="line">    if (self = [super init]) &#123;</div><div class="line">        _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeRefresh:) userInfo:nil repeats:YES];</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)timeRefresh:(NSTimer*)timer &#123;</div><div class="line">    NSLog(@&quot;TimeRefresh...&quot;);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)cleanTimer &#123;</div><div class="line">    [_timer invalidate];</div><div class="line">    _timer = nil;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)dealloc &#123;</div><div class="line">    [super dealloc];</div><div class="line">    NSLog(@&quot;销毁&quot;);</div><div class="line">    [self cleanTimer];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>在外部调用时，将其创建后5秒销毁。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TestNSTimer *timer = [[TestNSTimer alloc]init];</div><div class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</div><div class="line">        [timer release];</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p><img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="timer"></p>
+<p>从图中可以看出，定时器在无限执行下去，这个给内存很大的消耗。</p>
+<p>我们都知道定时器使用完毕时需要将其停止并滞空，但cleanTimer方法到底何时调用呢？在当前类的dealloc方法中吗？并不是，若将cleanTimer方法调用在dealloc方法中会产生如下问题，当前类销毁执行dealloc的前提是定时器需要停止并滞空，而定时器停止并滞空的时机在当前类调用dealloc方法时，这样就造成了互相等待的场景，从而内存一直无法释放。因此需要注意cleanTimer的调用时机从而避免内存无法释放，如上的解决方案为将cleanTimer方法外漏，在外部调用即可。</p>
+<p>如果是使用timer,有个比较好的处理方式是，谁执行谁释放，避免timer未能及时释放。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">TestNSTimer *timer = [[TestNSTimer alloc]init];</div><div class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</div><div class="line">        [timer cleanTimer];</div><div class="line">        [timer release];</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<p><code>参考</code> <code>卖报的小画家Sure的简书</code> <a href="http://www.cocoachina.com/ios/20170427/19135.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20170427/19135.html</a></p>
+<h4 id="Happy-reading"><a href="#Happy-reading" class="headerlink" title="Happy reading!"></a>Happy reading!</h4><hr>
 
       
       
@@ -365,13 +361,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/public/2017/05/26/function与感叹号/">function与感叹号</a></p>
+        <p><span>本文标题:</span><a href="/public/2017/05/31/ios内存泄漏的那些事/">ios内存泄漏的那些事</a></p>
         <p><span>文章作者:</span><a href="/public/" title="访问 Kevin c.x 的个人博客">Kevin c.x</a></p>
-        <p><span>发布时间:</span>2017年05月26日 - 16时33分</p>
-        <p><span>最后更新:</span>2017年05月28日 - 14时24分</p>
+        <p><span>发布时间:</span>2017年05月31日 - 10时14分</p>
+        <p><span>最后更新:</span>2017年05月31日 - 14时11分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/public/2017/05/26/function与感叹号/" title="function与感叹号">https://bugwacko.github.io/2017/05/26/function与感叹号/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://bugwacko.github.io/2017/05/26/function与感叹号/　　作者: Kevin c.x" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/public/2017/05/31/ios内存泄漏的那些事/" title="ios内存泄漏的那些事">https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/　　作者: Kevin c.x" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/public/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -384,18 +380,9 @@
 
 <nav id="article-nav">
   
-    <a href="/public/2017/05/31/ios内存泄漏的那些事/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          ios内存泄漏的那些事
-        
-      </div>
-    </a>
   
-  
-    <a href="/public/2017/05/24/hexo和github/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo和github</div>
+    <a href="/public/2017/05/26/function与感叹号/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">function与感叹号</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -406,7 +393,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#如果在function之前加上感叹号-会怎么样-？"><span class="toc-number">1.</span> <span class="toc-text">如果在function之前加上感叹号 (!) 会怎么样 ？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#happy-reading"><span class="toc-number"></span> <span class="toc-text">happy reading</span></a>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Block循环引用"><span class="toc-number">1.</span> <span class="toc-text">Block循环引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delegate循环引用"><span class="toc-number">2.</span> <span class="toc-text">delegate循环引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSTimer循环引用"><span class="toc-number">3.</span> <span class="toc-text">NSTimer循环引用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Happy-reading"><span class="toc-number">3.1.</span> <span class="toc-text">Happy reading!</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -454,7 +441,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2017/05/26/function与感叹号/" data-title="function与感叹号" data-url="https://bugwacko.github.io/public/2017/05/26/function与感叹号/"></div>
+    <div class="ds-thread" data-thread-key="2017/05/31/ios内存泄漏的那些事/" data-title="ios内存泄漏的那些事" data-url="https://bugwacko.github.io/public/2017/05/31/ios内存泄漏的那些事/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -477,13 +464,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/public/2017/05/31/ios内存泄漏的那些事/" title="上一篇: ios内存泄漏的那些事">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/public/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/public/2017/05/24/hexo和github/" title="下一篇: hexo和github">
+            <a href="/public/2017/05/26/function与感叹号/" title="下一篇: function与感叹号">
                 <i class="fa fa-angle-right"></i>
             </a>
         

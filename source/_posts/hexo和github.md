@@ -1,18 +1,18 @@
 ---
-title: hexo-github
+title: hexo和github
 date: 2017-05-24 16:20:48
 tags: hexo、git、node.js
 ---
 
-# 什么是HEXO？
+## 什么是HEXO？
 Hexo是一个快速，简单和强大的博客框架。您在[Markdown](https://daringfireball.net/projects/markdown/)（或其他语言）中撰写帖子，Hexo会在几秒钟内生成具有美丽主题的静态文件。
-
-# 安装
-只需要几分钟的时间来设置Hexo。如果您遇到问题，找不到解决方案，请[提交一个GitHub问题](https://github.com/hexojs/hexo/issues)，我会尽力解决。
 
 + <!-- more -->
 
-# 要求
+## 安装
+只需要几分钟的时间来设置Hexo。如果您遇到问题，找不到解决方案，请[提交一个GitHub问题](https://github.com/hexojs/hexo/issues)，我会尽力解决。
+
+## 要求
 安装Hexo很容易。但是，您需要首先安装几个其他的东西：
 > * [Node.js](https://nodejs.org/en/)
 > * [Git](https://git-scm.com/)
@@ -22,13 +22,13 @@ Hexo是一个快速，简单和强大的博客框架。您在[Markdown](https://
 ```
 $ npm install -g hexo-cli
 ```
-# 安装Git
+## 安装Git
 * Windows：下载并安装[git](https://git-scm.com/)。
 * 苹果：与安装它[自制](https://brew.sh/)，[MacPorts](https://www.macports.org/)的或[安装程序](https://sourceforge.net/projects/git-osx-installer/)。
 * Linux（Ubuntu，Debian）： sudo apt-get install git-core
 * Linux（Fedora，Red Hat，CentOS）： sudo yum install git-core
 
-# 安装Node.js
+## 安装Node.js
 安装Node.js的最好方法是使用[nvm](https://github.com/creationix/nvm)。
 
 ```
@@ -48,7 +48,7 @@ $ nvm install stable
 ```
 或者，下载并运行[安装程序](https://nodejs.org/en/)。
 
-# 安装Hexo
+## 安装Hexo
 
 ```
 $ npm install -g hexo-cli
@@ -62,7 +62,7 @@ $ cd <folder>
 $ npm安装
 ```
 
-# 目录结构
+## 目录结构
 一旦初始化，您的项目文件夹将如下所示：
 
 ```

@@ -12,7 +12,7 @@ $(function(){
   };
 
   var dots = {
-    nb: 250,
+    nb: 200,
     distance: 100,
     d_radius: 150,
     array: []

@@ -1,18 +1,18 @@
 ---
-title: hexo-github
+title: function与感叹号
 date: 2017-05-26 16:33:48
 tags: js
 ---
 
-# function与感叹号
 ##### 如果在function之前加上感叹号 (!) 会怎么样 ？
+
++ <!-- more -->
+
 比如下面的代码：
 
 ```
 !function(){alert('iifksp')}()        // true
 ```
-
-+ <!-- more -->
 
 在控制台运行后得到的值时true，为什么是true这很容易理解，因为这个匿名函数没有返回值，默认返回的就是undefined，求反的结果很自然的就是true。所以问题并不在于结果值，而是在于，为什么求反操作能够让一个匿名函数的自调变的合法？
 
@@ -91,7 +91,7 @@ delete function(){alert('iifksp')}()        // true
 
 最后讨论下性能。我在jsperf上简单建立了一个测试：http://jsperf.com/js-funcion-expression-speed ，可以用不同浏览器访问，运行测试查看结果。我也同时将结果罗列如下表所示（由于我比较穷，测试配置有点丢人不过那也没办法：奔腾双核1.4G，2G内存，win7企业版）：
 
-![MacDown logo](http://macdown.uranusjr.com/static/base/img/logo-160.png)
+![MacDown logo](https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7/function%E4%B8%8E%E6%84%9F%E5%8F%B9%E5%8F%B7-1.png)
 
 可见不同的方式产生的结果并不相同，而且，差别很大，因浏览器而异。
 
