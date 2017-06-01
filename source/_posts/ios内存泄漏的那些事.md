@@ -1,7 +1,11 @@
 ---
 title: ios内存泄漏的那些事
 date: 2017-05-31 10:14:23
-tags: block、release
+tags: 
+
+- HTML block 
+- HTML release 
+
 ---
 
 从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：
@@ -34,7 +38,7 @@ self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 ```
 这里仅有三行代码，无非就是创建了下拉刷新部分View然后返回，这里比较重要的是**cmp.refreshingBlock = refreshingBlock**;这一句，这里的**refreshingBlock**是属于**MJRefreshHeader**的强引用属性，最后header会成为我们自己tableView的强引用属性mj_header，也就是说self.tableView强引用header, header强引用**refreshingBlock**，如果**refreshingBlock**里面强引用self，就成了循环引用，所以必须使用**weakSelf**，破掉这个循环。画图表示为：
 
-![mjrefresh](http://macdown.uranusjr.com/static/base/img/logo-160.png)
+![mjrefresh](https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/1.png)
 
 闭环过程：
 **self --> self.tableView --> self.tableView.mj_header --> self.tableView.mj_header.refreshingBlock --> self**
@@ -62,7 +66,7 @@ delegate 同样存在闭环问题，但是delegate的问题很常见也是比较
 ```
 下图比较形象的说明了使用weak修饰就是为了防止ViewController和UITableView相互强引用内存无法释放的问题：
 
-![delegate](http://macdown.uranusjr.com/static/base/img/logo-160.png)
+![delegate](https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/2.jpg)
 
 ### NSTimer循环引用
 对于定时器NSTimer，使用不正确也会造成内存泄漏问题。这里简单举个例子，我们声明了一个类TestNSTimer，在其init方法中创建定时器执行操作。
@@ -104,7 +108,7 @@ TestNSTimer *timer = [[TestNSTimer alloc]init];
         [timer release];
     });
 ```
-![timer](http://macdown.uranusjr.com/static/base/img/logo-160.png)
+![timer](https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/3.png)
 
 从图中可以看出，定时器在无限执行下去，这个给内存很大的消耗。
 

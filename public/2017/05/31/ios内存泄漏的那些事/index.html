@@ -6,20 +6,20 @@
   <title>ios内存泄漏的那些事 | BugWacko&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
-<meta name="keywords" content="block、release">
+<meta name="keywords" content="HTML block,HTML release">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios内存泄漏的那些事">
 <meta property="og:url" content="https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/index.html">
 <meta property="og:site_name" content="BugWacko&#39;s Blog">
 <meta property="og:description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
-<meta property="og:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
-<meta property="og:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
-<meta property="og:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
-<meta property="og:updated_time" content="2017-05-31T06:11:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/3.png">
+<meta property="og:updated_time" content="2017-05-31T06:50:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios内存泄漏的那些事">
 <meta name="twitter:description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
-<meta name="twitter:image" content="http://macdown.uranusjr.com/static/base/img/logo-160.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/1.png">
   
     <link rel="alternative" href="/atom.xml" title="BugWacko&#39;s Blog" type="application/atom+xml">
   
@@ -155,7 +155,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/public/tags/block、release/" style="font-size: 10px;">block、release</a> <a href="/public/tags/hexo、git、node-js/" style="font-size: 10px;">hexo、git、node.js</a> <a href="/public/tags/js/" style="font-size: 10px;">js</a>
+                        <a href="/public/tags/HTML-block/" style="font-size: 10px;">HTML block</a> <a href="/public/tags/HTML-git/" style="font-size: 10px;">HTML git</a> <a href="/public/tags/HTML-hexo/" style="font-size: 10px;">HTML hexo</a> <a href="/public/tags/HTML-js/" style="font-size: 10px;">HTML js</a> <a href="/public/tags/HTML-node-js/" style="font-size: 10px;">HTML node.js</a> <a href="/public/tags/HTML-release/" style="font-size: 10px;">HTML release</a>
                     </div>
                 </section>
                 
@@ -265,7 +265,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/block、release/">block、release</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/HTML-block/">HTML block</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/HTML-release/">HTML release</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -286,7 +286,7 @@
 <p>我们可以再headerWithRefreshingBlock看到</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 构造方法</div><div class="line">+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock</div><div class="line">&#123;</div><div class="line">    MJRefreshHeader *cmp = [[self alloc] init];</div><div class="line">    cmp.refreshingBlock = refreshingBlock;</div><div class="line">    return cmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里仅有三行代码，无非就是创建了下拉刷新部分View然后返回，这里比较重要的是<strong>cmp.refreshingBlock = refreshingBlock</strong>;这一句，这里的<strong>refreshingBlock</strong>是属于<strong>MJRefreshHeader</strong>的强引用属性，最后header会成为我们自己tableView的强引用属性mj_header，也就是说self.tableView强引用header, header强引用<strong>refreshingBlock</strong>，如果<strong>refreshingBlock</strong>里面强引用self，就成了循环引用，所以必须使用<strong>weakSelf</strong>，破掉这个循环。画图表示为：</p>
-<p><img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="mjrefresh"></p>
+<p><img src="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/1.png" alt="mjrefresh"></p>
 <p>闭环过程：<br><strong>self –&gt; self.tableView –&gt; self.tableView.mj_header –&gt; self.tableView.mj_header.refreshingBlock –&gt; self</strong></p>
 <p>解决方案：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">__weak typeof(self) weakself = self; </div><div class="line">self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^&#123;</div><div class="line">        __strong typeof(self) strongself = weakself;</div><div class="line">        strongself.page = 1;</div><div class="line">        [strongself.dataArr removeAllObjects];</div><div class="line">        [strongself loadData];</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
@@ -296,11 +296,11 @@
 <h3 id="delegate循环引用"><a href="#delegate循环引用" class="headerlink" title="delegate循环引用"></a>delegate循环引用</h3><p>delegate 同样存在闭环问题，但是delegate的问题很常见也是比较好解决的，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//一般我们定义delegate都是会使用weak弱引用</div><div class="line">@property (nonatomic, weak) id delegate;</div></pre></td></tr></table></figure>
 <p>下图比较形象的说明了使用weak修饰就是为了防止ViewController和UITableView相互强引用内存无法释放的问题：</p>
-<p><img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="delegate"></p>
+<p><img src="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/2.jpg" alt="delegate"></p>
 <h3 id="NSTimer循环引用"><a href="#NSTimer循环引用" class="headerlink" title="NSTimer循环引用"></a>NSTimer循环引用</h3><p>对于定时器NSTimer，使用不正确也会造成内存泄漏问题。这里简单举个例子，我们声明了一个类TestNSTimer，在其init方法中创建定时器执行操作。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">@interface TestNSTimer ()</div><div class="line">@property (nonatomic, strong) NSTimer *timer;</div><div class="line">@end</div><div class="line">@implementation TestNSTimer</div><div class="line"> </div><div class="line">- (instancetype)init &#123;</div><div class="line">    if (self = [super init]) &#123;</div><div class="line">        _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeRefresh:) userInfo:nil repeats:YES];</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)timeRefresh:(NSTimer*)timer &#123;</div><div class="line">    NSLog(@&quot;TimeRefresh...&quot;);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)cleanTimer &#123;</div><div class="line">    [_timer invalidate];</div><div class="line">    _timer = nil;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)dealloc &#123;</div><div class="line">    [super dealloc];</div><div class="line">    NSLog(@&quot;销毁&quot;);</div><div class="line">    [self cleanTimer];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">@end</div></pre></td></tr></table></figure>
 <p>在外部调用时，将其创建后5秒销毁。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TestNSTimer *timer = [[TestNSTimer alloc]init];</div><div class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</div><div class="line">        [timer release];</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
-<p><img src="http://macdown.uranusjr.com/static/base/img/logo-160.png" alt="timer"></p>
+<p><img src="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/3.png" alt="timer"></p>
 <p>从图中可以看出，定时器在无限执行下去，这个给内存很大的消耗。</p>
 <p>我们都知道定时器使用完毕时需要将其停止并滞空，但cleanTimer方法到底何时调用呢？在当前类的dealloc方法中吗？并不是，若将cleanTimer方法调用在dealloc方法中会产生如下问题，当前类销毁执行dealloc的前提是定时器需要停止并滞空，而定时器停止并滞空的时机在当前类调用dealloc方法时，这样就造成了互相等待的场景，从而内存一直无法释放。因此需要注意cleanTimer的调用时机从而避免内存无法释放，如上的解决方案为将cleanTimer方法外漏，在外部调用即可。</p>
 <p>如果是使用timer,有个比较好的处理方式是，谁执行谁释放，避免timer未能及时释放。</p>
@@ -364,7 +364,7 @@
         <p><span>本文标题:</span><a href="/public/2017/05/31/ios内存泄漏的那些事/">ios内存泄漏的那些事</a></p>
         <p><span>文章作者:</span><a href="/public/" title="访问 Kevin c.x 的个人博客">Kevin c.x</a></p>
         <p><span>发布时间:</span>2017年05月31日 - 10时14分</p>
-        <p><span>最后更新:</span>2017年05月31日 - 14时11分</p>
+        <p><span>最后更新:</span>2017年05月31日 - 14时50分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/public/2017/05/31/ios内存泄漏的那些事/" title="ios内存泄漏的那些事">https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/</a>
             <span class="copy-path" data-clipboard-text="原文: https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/　　作者: Kevin c.x" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
