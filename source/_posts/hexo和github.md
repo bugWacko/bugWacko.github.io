@@ -12,7 +12,7 @@ tags:
 ## 什么是HEXO？
 Hexo是一个快速，简单和强大的博客框架。您在[Markdown](https://daringfireball.net/projects/markdown/)（或其他语言）中撰写帖子，Hexo会在几秒钟内生成具有美丽主题的静态文件。
 
-+ <!-- more -->
+<!-- more -->
 
 ## 安装
 只需要几分钟的时间来设置Hexo。如果您遇到问题，找不到解决方案，请[提交一个GitHub问题](https://github.com/hexojs/hexo/issues)，我会尽力解决。
