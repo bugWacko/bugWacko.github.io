@@ -6,7 +6,7 @@
   <title>ios内存泄漏的那些事 | BugWacko&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
-<meta name="keywords" content="HTML block,HTML release">
+<meta name="keywords" content="block,release">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios内存泄漏的那些事">
 <meta property="og:url" content="https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/index.html">
@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/2.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/bugWacko/bugwacko.github.io/master/projectFile/ios%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/3.png">
-<meta property="og:updated_time" content="2017-05-31T06:50:39.000Z">
+<meta property="og:updated_time" content="2017-06-05T08:19:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios内存泄漏的那些事">
 <meta name="twitter:description" content="从开始从事IOS开发以来，内存泄漏一直是自己需要很小心的处理的问题，因为这个东西一不小心就会出现，比较头疼。而且自己没有解决，其他人很少会帮你解决和排查。除非工程大面积优化，自己总结和参考了一些，内容相对比较常见，请大家指教：">
@@ -155,7 +155,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/public/tags/HTML-block/" style="font-size: 10px;">HTML block</a> <a href="/public/tags/HTML-git/" style="font-size: 10px;">HTML git</a> <a href="/public/tags/HTML-hexo/" style="font-size: 10px;">HTML hexo</a> <a href="/public/tags/HTML-js/" style="font-size: 10px;">HTML js</a> <a href="/public/tags/HTML-node-js/" style="font-size: 10px;">HTML node.js</a> <a href="/public/tags/HTML-release/" style="font-size: 10px;">HTML release</a>
+                        <a href="/public/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/public/tags/UIBezierPath/" style="font-size: 10px;">UIBezierPath</a> <a href="/public/tags/UICollectionView/" style="font-size: 10px;">UICollectionView</a> <a href="/public/tags/UICollectionViewFlowLayout/" style="font-size: 10px;">UICollectionViewFlowLayout</a> <a href="/public/tags/block/" style="font-size: 10px;">block</a> <a href="/public/tags/git/" style="font-size: 10px;">git</a> <a href="/public/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/public/tags/js/" style="font-size: 10px;">js</a> <a href="/public/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/public/tags/release/" style="font-size: 10px;">release</a>
                     </div>
                 </section>
                 
@@ -265,7 +265,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/HTML-block/">HTML block</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/HTML-release/">HTML release</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/block/">block</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/public/tags/release/">release</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -364,7 +364,7 @@
         <p><span>本文标题:</span><a href="/public/2017/05/31/ios内存泄漏的那些事/">ios内存泄漏的那些事</a></p>
         <p><span>文章作者:</span><a href="/public/" title="访问 Kevin c.x 的个人博客">Kevin c.x</a></p>
         <p><span>发布时间:</span>2017年05月31日 - 10时14分</p>
-        <p><span>最后更新:</span>2017年05月31日 - 14时50分</p>
+        <p><span>最后更新:</span>2017年06月05日 - 16时19分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/public/2017/05/31/ios内存泄漏的那些事/" title="ios内存泄漏的那些事">https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/</a>
             <span class="copy-path" data-clipboard-text="原文: https://bugwacko.github.io/2017/05/31/ios内存泄漏的那些事/　　作者: Kevin c.x" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -379,6 +379,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/public/2017/06/05/UIBezierPath和Core Graphics/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          iOS - UIBezierPath 和 Core Graphics
+        
+      </div>
+    </a>
   
   
     <a href="/public/2017/05/26/function与感叹号/" id="article-nav-older" class="article-nav-link-wrap">
@@ -464,7 +473,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/public/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/public/2017/06/05/UIBezierPath和Core Graphics/" title="上一篇: iOS - UIBezierPath 和 Core Graphics">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
@@ -473,7 +484,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/public/2017/05/31/ios内存泄漏的那些事/">ios内存泄漏的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/public/2017/05/26/function与感叹号/">function与感叹号</a></li><li class="post-list-item"><a class="post-list-link" href="/public/2017/05/24/hexo和github/">hexo和github</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/public/2017/06/23/layoutAttributesForElementsInRect/">iOS - Logging only once for UICollectionViewFlowLayout cache mismatched frame</a></li><li class="post-list-item"><a class="post-list-link" href="/public/2017/06/05/UIBezierPath和Core Graphics/">iOS - UIBezierPath 和 Core Graphics</a></li><li class="post-list-item"><a class="post-list-link" href="/public/2017/05/31/ios内存泄漏的那些事/">ios内存泄漏的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/public/2017/05/26/function与感叹号/">function与感叹号</a></li><li class="post-list-item"><a class="post-list-link" href="/public/2017/05/24/hexo和github/">hexo和github</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

@@ -3,9 +3,9 @@ title: hexo和github
 date: 2017-05-24 16:20:48
 tags: 
 
-- HTML hexo
-- HTML git
-- HTML node.js
+- hexo
+- git
+- node.js
 
 ---
 
